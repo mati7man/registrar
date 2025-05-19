@@ -11,6 +11,6 @@ class CreateEnrollments < ActiveRecord::Migration[7.0]
     end
 
     add_index :enrollments, :username
-    add_index :enrollments, [:year, :semester]
+    add_index :enrollments, [ :year, :semester ]
   end
 end

@@ -4,4 +4,4 @@ class Enrollment < ApplicationRecord
     validates :semester, presence: true
     validates :course, presence: true
     validates :status, presence: true
-  end
+end
