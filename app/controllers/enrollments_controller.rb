@@ -44,7 +44,7 @@ class EnrollmentsController < ApplicationController
 
         respond_to do |format|
           format.pdf do
-            pdf = Prawn::Document.new(page_size: "A4", margin: [ 30, 30, 30, 30 ])
+            pdf = Prawn::Document.new(page_size: "A4", margin: [30, 30, 30, 30])
             pdf.text "Enrollment Report", size: 20, style: :bold, align: :center
             pdf.move_down 20
 
@@ -59,7 +59,7 @@ class EnrollmentsController < ApplicationController
               pdf.move_down 10
 
               # Create table data for this student
-              table_data = [ [ "Course", "Status" ] ]
+              table_data = [["Course", "Status"]]
               user_enrollments.each do |enrollment|
                 table_data << [
                   enrollment.course,
@@ -75,11 +75,11 @@ class EnrollmentsController < ApplicationController
                 table.row(0).style(background_color: "CCCCCC", font_style: :bold)
 
                 # Set adjusted proportional widths
-                table.columns([ 0 ]).width = available_width * 0.70  # Course
-                table.columns([ 1 ]).width = available_width * 0.30  # Status
+                table.columns([0]).width = available_width * 0.70  # Course
+                table.columns([1]).width = available_width * 0.30  # Status
 
                 # Add cell padding and text wrapping
-                table.cells.padding = [ 5, 5, 5, 5 ]
+                table.cells.padding = [5, 5, 5, 5]
                 table.cells.size = 10
                 table.cells.style do |cell|
                   cell.text_color = "000000"
