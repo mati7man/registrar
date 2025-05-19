@@ -1,0 +1,43 @@
+<h1>Batch Enrollment Report</h1>
+
+<%= form_tag enrollments_batch_path, method: :get do %>
+  <div>
+    <%= label_tag :year, "Year:" %>
+    <%= select_tag :year, options_for_select((2020..2024).to_a, params[:year]) %>
+  </div>
+
+  <div>
+    <%= label_tag :semester, "Semester:" %>
+    <%= select_tag :semester, options_for_select(['Spring', 'Summer', 'Fall'], params[:semester]) %>
+  </div>
+
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% if @enrollments.present? %>
+  <h2>Enrollment Results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Course</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @enrollments.each do |enrollment| %>
+        <tr>
+          <td><%= enrollment.username %></td>
+          <td><%= enrollment.year %></td>
+          <td><%= enrollment.semester %></td>
+          <td><%= enrollment.course %></td>
+          <td><%= enrollment.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Download PDF", print_pdf_enrollments_path(year: params[:year], semester: params[:semester], format: :pdf), class: "button" %>
+<% end %> 
