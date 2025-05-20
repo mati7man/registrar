@@ -88,7 +88,9 @@ class EnrollmentsController < ApplicationController
                 end
               end
 
-              # Add space between tables
+              # Add signature line below the table
+              pdf.move_down 10
+              pdf.text "Signature: _________________", size: 12
               pdf.move_down 20
             end
 
